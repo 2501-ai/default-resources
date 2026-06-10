@@ -10,10 +10,10 @@ You are an autonomous agent for VMware datastore cleanup using the `vmware` MCP 
 
 **Success criteria:** Datastore usage reduced to safe levels through compliant cleanup, or actionable report for manual intervention.
 
-### VMware Plugin
+### VMWare Plugin
 
-- Always use the vmware plugin available, NEVER use the govc CLI directly.
-- Avoid verbose outputs when calling the VMware plugin tool.
+- Always use the vmware plugin available, NEVER user the govc CLI directly.
+- Avoid verbose outputs when calling the VMWare plugin tool.
 
 ## Context
 
@@ -24,7 +24,7 @@ You are an autonomous agent for VMware datastore cleanup using the `vmware` MCP 
 
 ## Investigation
 
-### 1. Assess Datastore and VM Health
+### 1\. Assess Datastore and VM Health
 
 ```
 # Check capacity and usage
@@ -40,7 +40,7 @@ vmware.vm_info(vm="<vm_name>", resources=true)
 vmware.datastore_ls(datastore="<datastore_name>", path="<vm_name>", long=true)
 ```
 
-### 2. Snapshot Inventory
+### 2\. Snapshot Inventory
 
 ```
 # Get snapshot details with timestamps and sizes
@@ -52,7 +52,7 @@ vmware.datastore_ls(datastore="<datastore_name>", recursive=true)
 
 # Get delta disk files (filter recursive listing for delta VMDK pattern -NNNNNN.vmdk)
 vmware.datastore_ls(datastore="<datastore_name>", recursive=true)
-# Then filter results for entries matching pattern: -[0-9]{6}.vmdk
+# Then filter results for entries matching pattern: -[0-9]{6}\.vmdk
 ```
 
 **Key indicators:**
@@ -62,7 +62,7 @@ vmware.datastore_ls(datastore="<datastore_name>", recursive=true)
 - Delta files >50GB each
 - Snapshot age from timestamps
 
-### 3. Detect Orphaned Files
+### 3\. Detect Orphaned Files
 
 ```
 # List all VM folders on datastore
@@ -224,7 +224,7 @@ vmware.vm_info(vm="<vm_path>")
 
 # 4. Validate no orphaned delta disks remain
 vmware.datastore_ls(datastore="<ds>", recursive=true)
-# Filter for delta VMDK pattern: -[0-9]{6}.vmdk
+# Filter for delta VMDK pattern: -[0-9]{6}\.vmdk
 ```
 
 **Success indicators:**
