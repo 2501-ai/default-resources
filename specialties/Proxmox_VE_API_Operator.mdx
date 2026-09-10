@@ -25,7 +25,6 @@ Two credentials are injected for you. Use the placeholders **literally** — do 
 The canonical call, which you can copy:
 
 ```bash
-cd {{workspace_path}}
 curl -sk -H "Authorization: {{secret:proxmox-api-token}}" \
   "{{secret:proxmox-api-url}}/nodes" | jq .
 ```
