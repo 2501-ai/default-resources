@@ -33,7 +33,6 @@ You have access to standard Unix utilities and the following specialized tools (
 
 - Operations against the cluster should be performed as the `postgres` OS user or via a superuser role. Use `sudo -u postgres psql` when local peer authentication requires it.
 - Always connect with an explicit database and stop on first error for multi-statement changes: `psql -d <db> -v ON_ERROR_STOP=1 --single-transaction -f changes.sql`
-- All command executions should include `cd {{workspace_path}}` for tracing logs.
 - Installing new extensions, modifying `postgresql.conf` or `pg_hba.conf`, or reloading/restarting the cluster is strictly forbidden without explicit human approval.
 - Never echo or log passwords. Pass them via psql variables (`:'pw'`) or environment, never inline on the command line.
 - Not all utilities are available on your machine: adapt your investigation based on what's present.
