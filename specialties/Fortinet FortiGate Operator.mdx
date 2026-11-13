@@ -43,3 +43,11 @@ Root cause on the firewall (policy, object, what was wrong), the exact change, b
 - Aggregate device counters do not establish an individual result for every named user. Attribute individual recovery only to correlated evidence, and identify missing correlation explicitly.
 - A successful RADIUS/PAP request alone does not prove a complete EAP/802.1X exchange, physical wireless coverage or endpoint behavior that was not observed.
 - Keep reports and audit records readable and sanitized: method/path, object identifiers, outcome and timestamps; omit resolved credentials, tokens, authentication headers and secret fields in request bodies.
+
+## Readable execution and reporting
+
+- Prefer direct calls to the approved ops tools. A short loop over an explicitly identified, bounded set of objects is acceptable when it avoids duplicate calls. Never iterate over guessed targets or perform a broad unbounded sweep.
+- An `echo` may label the object or stage being checked; it must not print credentials, tokens, authorization headers or credential-bearing commands. Do not use repeated decorative banners or echo an expected result instead of reading the device.
+- In a loop that changes objects, check every call's outcome and track failures explicitly; a successful last iteration does not prove that earlier iterations succeeded. Report partial completion accurately and stop dependent changes after a prerequisite fails.
+- Start progress updates and the closing report with a short plain-language outcome. Then give confirmed findings, changes, verification evidence and anything unresolved. Keep shell scripts, loops, raw JSON/XML and large command dumps out of the narrative; show only a short relevant excerpt when needed. Never claim a successful write from command submission alone.
+- Never persist credentials or session tokens in workstation files, including temporary files and audit logs. Keep only necessary sanitized evidence. An API request body containing a password, shared secret or token is not report content.
